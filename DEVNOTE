@@ -5,3 +5,6 @@ v0.2 (L3)
     A) Component as a ES6 function not as a class.
     B) Component ES6 function props and reserved keyword children handling.
     c) state management using react default state management (change a single state object variable, change the whole array of object of a particular state variable).
+    D) Access parent function from child components using passing reference to the function by props.
+    E) Used bind to pass params to the function.
+    F) 2 way data binding.

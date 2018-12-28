@@ -14,10 +14,10 @@ class App3 extends Component {
     /**
      * for a particular state variable change
      */
-    changeStateHandler = () => {
+    changeStateHandler = (newName) => {
         let statePersons = [...this.state.persons];
         let statePerson = statePersons[1];
-        statePerson.name = 'Ujjwal';
+        statePerson.name = newName;
         statePerson.age = 30;
         statePersons[1] = statePerson;
         this.setState({ statePersons });
@@ -34,14 +34,25 @@ class App3 extends Component {
             ]
         })
     }
+    twoWayCheck = (event) => {
+        console.log(event.target.value);
+    }
     render() {
         return (
             <div id="bg1">
-                <button onClick={this.changeStateHandler}>Change State Single</button>
+                <button onClick={this.changeStateHandler.bind(this,'thug')}>Change State Single</button>
                 <button onClick={this.changeStateHandlerAll}>Change State All</button>
-                <Persons name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-                <Persons name={this.state.persons[1].name} age={this.state.persons[1].age}/>
-                <Persons name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+                <Persons 
+                    name={this.state.persons[0].name} 
+                    age={this.state.persons[0].age}/>
+                <Persons 
+                    name={this.state.persons[1].name} 
+                    age={this.state.persons[1].age}
+                    clickFromChild={this.changeStateHandlerAll}
+                    changed={this.twoWayCheck}>Try this for click from child to change parent state</Persons>
+                <Persons 
+                    name={this.state.persons[2].name} 
+                    age={this.state.persons[2].age}/>
             </div>
         )
     }
