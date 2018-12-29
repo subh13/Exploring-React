@@ -8,3 +8,9 @@ v0.2 (L3)
     D) Access parent function from child components using passing reference to the function by props.
     E) Used bind to pass params to the function.
     F) 2 way data binding.
+v0.3 (L4)
+    A) List and conditional operator.
+    B) Splice and slice operator.
+    C) Skip state mutation. Rather use spread operator.
+    D) Use key always in a loop or map.
+    E) Javascript is reference type so every function call is a reference to that function itself.
