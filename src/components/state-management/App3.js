@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Persons from '../Persons/Persons';
 import { StyleRoot } from 'radium';
+import ErrorBoundary from '../ErrorHandling/ErrorBoundary';
 class App3 extends Component {
     // constructor () {
     //     super();
@@ -78,6 +79,7 @@ class App3 extends Component {
                 <button onClick={this.showPersonsList}>Toggle Persons</button>
                 {this.state.showPersons ? 
                     <div>
+                        <ErrorBoundary>
                         <Persons 
                             name={this.state.persons[0].name} 
                             age={this.state.persons[0].age}/>
@@ -88,7 +90,7 @@ class App3 extends Component {
                             changed={this.twoWayCheck}>Try this for click from child to change parent state</Persons>
                         <Persons 
                             name={this.state.persons[2].name} 
-                            age={this.state.persons[2].age}/>
+                            age={this.state.persons[2].age}/> </ErrorBoundary>
                     </div> : null   
                 }
                 <hr/>
