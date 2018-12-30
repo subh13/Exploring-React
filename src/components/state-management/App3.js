@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Persons from '../Persons/Persons';
+import { StyleRoot } from 'radium';
 class App3 extends Component {
     // constructor () {
     //     super();
@@ -70,7 +71,8 @@ class App3 extends Component {
     }
     render() {
         return (
-            <div id="bg1">
+            <StyleRoot>
+                <div id="bg1">
                 <button onClick={this.changeStateHandler.bind(this,'thug')}>Change State Single</button>
                 <button onClick={this.changeStateHandlerAll}>Change State All</button>
                 <button onClick={this.showPersonsList}>Toggle Persons</button>
@@ -99,6 +101,7 @@ class App3 extends Component {
                 )}
                 <p>Persons through js function</p>
             </div>
+            </StyleRoot>
         )
     }
 }

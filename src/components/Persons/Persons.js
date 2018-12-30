@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Radium from 'radium';
 const Persons = (props) => {
     const styles = {
         border: '1px solid #ccc',
@@ -7,7 +7,14 @@ const Persons = (props) => {
         padding: '4px 0 10px 4px',
         borderRadius: '5px',
         textAlign: 'center',
-        boxShadow: '0 5px 5px darkblue'
+        boxShadow: '0 5px 5px darkblue',
+        ':hover' : {
+            backgroundColor: 'lightblue',
+            color: 'black'
+        },
+        '@media (min-width: 500px)' : {
+            width: '450px'
+        }
     }
     return (
         <div style={styles}>
@@ -19,4 +26,4 @@ const Persons = (props) => {
         </div>
     )
 }
-export default Persons;
+export default Radium(Persons);
