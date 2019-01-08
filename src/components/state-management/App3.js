@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import Persons from '../Persons/Persons';
-import { StyleRoot } from 'radium';
 import ErrorBoundary from '../ErrorHandling/ErrorBoundary';
+import MainContainer from '../HOC//MainContainer';
+import HocAsFunc from '../HOC/HocAsFunc';
+import './App3.css';
+export const AuthContext = React.createContext(false);
 class App3 extends Component {
     // constructor () {
     //     super();
@@ -9,11 +12,13 @@ class App3 extends Component {
     // }
     state = {
         persons: [
-            {id: 1, name: 'Subhankar', age: '25'},
-            {id: 2, name: 'Vidyotma', age: '25'},
-            {id: 3, name: 'Goutam', age: '29'}
+            {id: 1, name: 'Subhankar', age: 25},
+            {id: 2, name: 'Vidyotma', age: 25},
+            {id: 3, name: 'Goutam', age: 29}
         ],
-        showPersons: false
+        showPersons: false,
+        togglePersonsCounter: 0,
+        isAuthenticated: false
     }
     /**
      * A normal ES6 funtion to chnage the stateS
@@ -35,9 +40,9 @@ class App3 extends Component {
     changeStateHandlerAll = () => {
         this.setState({
             persons: [
-                {name: 'Vidhan', age: '27'},
-                {name: 'Ravi', age: '45'},
-                {name: 'Dhruba', age: '50'}
+                {name: 'Vidhan', age: 27},
+                {name: 'Ravi', age: 45},
+                {name: 'Dhruba', age: 50}
             ]
         })
     }
@@ -46,7 +51,12 @@ class App3 extends Component {
     }
     showPersonsList = () => {
         const doesShow = this.state.showPersons;
-        this.setState({showPersons: !doesShow});
+        this.setState((prevState, props) => {
+            return {
+                showPersons: !doesShow,
+                togglePersonsCounter: prevState.togglePersonsCounter + 1
+            }
+        });
     }
     deletePerson = (personIndex) => {
         // const persons = this.state.persons; // DO NOT do this directly accessing state variable will mutate state
@@ -72,11 +82,11 @@ class App3 extends Component {
     }
     render() {
         return (
-            <StyleRoot>
-                <div id="bg1">
+            <div id='bg1'>
                 <button onClick={this.changeStateHandler.bind(this,'thug')}>Change State Single</button>
                 <button onClick={this.changeStateHandlerAll}>Change State All</button>
                 <button onClick={this.showPersonsList}>Toggle Persons</button>
+                <p>Persons through js function Toggle {this.state.showPersons ? 'true': 'false'}</p>
                 {this.state.showPersons ? 
                     <div>
                         <ErrorBoundary>
@@ -97,14 +107,15 @@ class App3 extends Component {
                 <p>Persons through list</p>
                 {this.state.persons.map((person, i) => 
                     <Persons name={person.name} 
-                             age={person.age} 
-                             clickFromChildDelete={this.deletePerson.bind(this, i)}
-                             key={person.id}/>
+                            age={person.age} 
+                            clickFromChildDelete={this.deletePerson.bind(this, i)}
+                            key={person.id}/>
                 )}
-                <p>Persons through js function</p>
+                <AuthContext.Provider value={this.state.isAuthenticated}>
+                    <MainContainer>Some Super Hero</MainContainer>
+                </AuthContext.Provider>
             </div>
-            </StyleRoot>
         )
     }
 }
-export default App3;
+export default HocAsFunc(App3, 'bg1Cls');

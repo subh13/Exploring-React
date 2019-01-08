@@ -1,5 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
+import PropTypes from 'prop-types';
+import { AuthContext } from '../state-management/App3';
 const Persons = (props) => {
     const styles = {
         border: '1px solid #ccc',
@@ -25,5 +27,12 @@ const Persons = (props) => {
             <input type="text" onChange={props.changed}/>
         </div>
     )
+}
+Persons.propTypes = {
+    clickFromChild: PropTypes.func,
+    clickFromChildDelete: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
 }
 export default Radium(Persons);
