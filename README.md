@@ -15,4 +15,8 @@ v0.2
     ` order page making modal and backdrop. (upto lecture #128)
     ` adding cancel and place order button navigation set up logo set up. upto 133.
     ` Navigation items toggle sidenavbar and mobile menu. upto 138.
-    ` burger builder 08 wrapped up
+    ` burger builder 08 wrapped up 
+<br/>
+v0.3 
+    ` Http Request through Axios. It is a side effect so we will be putting it inside of componentDidMount()
+    ` error handler as higher order component.
