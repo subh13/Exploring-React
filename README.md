@@ -20,3 +20,11 @@ v0.2
 v0.3 
     ` Http Request through Axios. It is a side effect so we will be putting it inside of componentDidMount()
     ` error handler as higher order component.
+v0.4 
+    ` react-router-dom installation
+    ` used swith statement to make a switch between two components in the container.
+    ` used withRouter to nest router properties to the child components.
+            import { withRouter } from 'react-router-dom';
+            export default withRouter(<Component-name>);
+    ` this.props.history.push('/checkout'); - to go to checkout page on click of a button 
+    ` query params upto lecture 213

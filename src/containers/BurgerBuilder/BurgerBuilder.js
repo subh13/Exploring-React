@@ -36,37 +36,48 @@ class BurgerBuilder extends Component {
         })
     }
     purchaseContinueHandler = () => {
-        this.setState({
-            isBusy: true
-        })
-        // alert('You Continue!!');
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Subhankar Roy',
-                address: {
-                    street: 'Teststreet 1',
-                    zipCode: '741302',
-                    country: 'India'
-                },
-                email: 'subhu.tcs@gmail.com'
-            },
-            deliveryMethod: 'fastest'
+        // this.setState({
+        //     isBusy: true
+        // })
+        // // alert('You Continue!!');
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Subhankar Roy',
+        //         address: {
+        //             street: 'Teststreet 1',
+        //             zipCode: '741302',
+        //             country: 'India'
+        //         },
+        //         email: 'subhu.tcs@gmail.com'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // }
+        // axios.post('/orders.json', order)
+        // .then(response => {
+        //     this.setState({
+        //         isBusy: false,
+        //         purchasing: false
+        //     })
+        //     console.log(response);
+        // })
+        // .catch(error => {
+        //     this.setState({
+        //         isBusy: false
+        //     })
+        //     console.log(error)
+        // });
+        const queryParams = [];
+        for (let i in this.state.ingredients) {
+            queryParams.push(
+                encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i])
+            );
         }
-        axios.post('/orders.json', order)
-        .then(response => {
-            this.setState({
-                isBusy: false,
-                purchasing: false
-            })
-            console.log(response);
-        })
-        .catch(error => {
-            this.setState({
-                isBusy: false
-            })
-            console.log(error)
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
         });
     }
     updatePurchaseState(updatedPrice) {
@@ -127,6 +138,7 @@ class BurgerBuilder extends Component {
         }
     }
     componentDidMount() {
+        console.log(this.props);
         axios.get('/ingredients.json')
         .then(response => {
             this.setState({
